@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    .main-content {
+      padding: 1rem;
+    }
+    @media (min-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 250px;
+        background-color: #fff;
+        border-right: 1px solid #e2e8f0;
+        padding: 1rem;
+        z-index: 1030;
+      }
+      .main-content {
+        margin-left: 250px;
+        margin-top: 0;
+        padding-top: 90px;
+      }
+    }
+    @media (max-width: 767.98px) {
+      .sidebar {
+        display: none;
+      }
+      .offcanvas-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        padding: 1rem;
+        border-right: 1px solid #dee2e6;
+        z-index: 1050;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .offcanvas-menu.show {
+        transform: translateX(0);
+      }
+      .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1040;
+        display: none;
+      }
+      .backdrop.show {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile Header -->
+  <nav class="navbar navbar-light bg-light fixed-top d-md-none">
+    <div class="container-fluid">
+      <button class="btn btn-outline-secondary" id="mobileToggle">
+        <i class="bi bi-list"></i>
+      </button>
+      <span class="navbar-brand mb-0 h1">Dashboard</span>
+    </div>
+  </nav>
+
+  <!-- Sidebar for Desktop -->
+  <div class="sidebar d-none d-md-block">
+    <h4>Dashboard</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="bi bi-house-door"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseDataWarga" role="button" aria-expanded="false" aria-controls="collapseDataWarga">
+          <i class="bi bi-people"></i> Data Warga
+        </a>
+        <div class="collapse ps-3" id="collapseDataWarga">
+          <ul class="nav flex-column">
+            <li><a class="nav-link" href="pages/data-warga.html">Data Warga</a></li>
+            <li><a class="nav-link" href="pages/data-kematian.html">Data Kematian</a></li>
+            <li><a class="nav-link" href="pages/data-kelahiran.html">Data Kelahiran</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseFormWarga" role="button" aria-expanded="false" aria-controls="collapseFormWarga">
+          <i class="bi bi-journal-text"></i> Form Pendataan
+        </a>
+        <div class="collapse ps-3" id="collapseFormWarga">
+          <ul class="nav flex-column">
+            <li><a class="nav-link" href="pages/form-data-warga.html">Form Data Warga</a></li>
+            <li><a class="nav-link" href="pages/form-data-kematian.html">Form Data Kematian</a></li>
+            <li><a class="nav-link" href="pages/form-data-kelahiran.html">Form Data Kelahiran</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Sidebar for Mobile -->
+  <div class="offcanvas-menu" id="mobileSidebar">
+    <h4>Dashboard</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
+        <ul class="nav flex-column ps-3 collapse" id="collapseMobileData">
+          <li><a class="nav-link" href="pages/data-warga.html">Data Warga</a></li>
+          <li><a class="nav-link" href="pages/data-kematian.html">Data Kematian</a></li>
+          <li><a class="nav-link" href="pages/data-kelahiran.html">Data Kelahiran</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileForm')"><i class="bi bi-journal-text"></i> Form Pendataan</a>
+        <ul class="nav flex-column ps-3 collapse" id="collapseMobileForm">
+          <li><a class="nav-link" href="pages/form-data-warga.html">Form Data Warga</a></li>
+          <li><a class="nav-link" href="pages/form-data-kematian.html">Form Data Kematian</a></li>
+          <li><a class="nav-link" href="pages/form-data-kelahiran.html">Form Data Kelahiran</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="backdrop" id="mobileBackdrop"></div>
+
+  <!-- Main Content -->
+  <div class="main-content pt-5">
+    <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+      <div class="container-fluid">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h4">Dashboard</h1>
+      </div>
+
+      <!-- Data Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+          <thead class="table-light text-center align-middle">
+            <tr>
+              <th rowspan="2">No</th>
+              <th rowspan="2">Kepala Rumah</th>
+              <th rowspan="2">Jumlah KK</th>
+              <th colspan="9">Jumlah Anggota Keluarga</th>
+              <th colspan="6">Kriteria Rumah</th>
+              <th colspan="3">Sumber Air</th>
+              <th colspan="2">Makanan Pokok</th>
+              <th colspan="4">Mengikuti Kegiatan</th>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <th>Balita L</th>
+              <th>Balita P</th>
+              <th>PUS</th>
+              <th>WUS</th>
+              <th>Ibu Hamil</th>
+              <th>Ibu Menyusui</th>
+              <th>Lansia</th>
+              <th>3 Buta</th>
+              <th>Berkebutuhan Khusus</th>
+
+              <th>Layak Huni</th>
+              <th>UKL</th>
+              <th>Tempat Sampah</th>
+              <th>SPAL</th>
+              <th>Jamban</th>
+              <th>Stiker P4K</th>
+
+              <th>PDAM</th>
+              <th>Sumur</th>
+              <th>DLL</th>
+
+              <th>Beras</th>
+              <th>Non Beras</th>
+
+              <th>UP2K</th>
+              <th>Pekarangan</th>
+              <th>IRT</th>
+              <th>Kerja Bakti</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>DALMI</td>
+              <td>2</td>
+              <td>7</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+
+              <td>7</td>
+              <td>0</td>
+
+              <td>7</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <!-- Tambahkan baris data lainnya sesuai PDF -->
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- Accordion Diagram Section -->
+      <div class="accordion" id="accordionChart">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Lihat Diagram Statistik Anggota
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionChart">
+          <div class="accordion-body">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Diagram Statistik</span>
+                <select id="chartType" class="form-select w-auto">
+                  <option value="bar">Diagram Batang</option>
+                  <option value="pie">Diagram Lingkaran</option>
+                </select>
+              </div>
+             <div class="card-body" style="max-height: 300px;">
+                <canvas id="dashboardChart" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Lihat Diagram Statistik Lansia
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionChart">
+          <div class="accordion-body">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Diagram Lansia</span>
+                <select id="lansiaChartType" class="form-select w-auto">
+                  <option value="bar">Diagram Batang</option>
+                  <option value="pie" selected>Diagram Lingkaran</option>
+                </select>
+              </div>
+              <div class="card-body" style="max-height: 300px;">
+                <canvas id="lansiaChart" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('dashboardChart').getContext('2d');
+    let chart;
+
+    const data = {
+      labels: ['DALMI', 'PAINEM', 'NANANG T.'],
+      datasets: [{
+        label: 'Jumlah Anggota Keluarga',
+        data: [7, 1, 3],
+        backgroundColor: ['#0d6efd', '#198754', '#ffc107'],
+      }]
+    };
+
+    function renderChart(type) {
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, {
+        type: type,
+        data: data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        }
+      });
+    }
+
+    document.getElementById('chartType').addEventListener('change', function () {
+      renderChart(this.value);
+    });
+
+    renderChart('bar');
+
+    const lansiaCtx = document.getElementById('lansiaChart').getContext('2d');
+    let lansiaChart;
+
+    const lansiaData = {
+      labels: ['DALMI', 'PAINEM', 'NANANG T.'],
+      datasets: [{
+        label: 'Jumlah Lansia',
+        data: [1, 0, 2],
+        backgroundColor: ['#dc3545', '#fd7e14', '#20c997'],
+      }]
+    };
+
+    function renderLansiaChart(type) {
+      if (lansiaChart) lansiaChart.destroy();
+      lansiaChart = new Chart(lansiaCtx, {
+        type: type,
+        data: lansiaData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        }
+      });
+    }
+
+    document.getElementById('lansiaChartType').addEventListener('change', function () {
+      renderLansiaChart(this.value);
+    });
+
+    renderLansiaChart('bar');
+
+    const toggleBtn = document.getElementById('mobileToggle');
+    const sidebar = document.getElementById('mobileSidebar');
+    const backdrop = document.getElementById('mobileBackdrop');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+      backdrop.classList.toggle('show');
+    });
+
+    backdrop.addEventListener('click', () => {
+      sidebar.classList.remove('show');
+      backdrop.classList.remove('show');
+    });
+
+    function toggleCollapse(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
