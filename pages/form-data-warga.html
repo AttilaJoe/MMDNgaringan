@@ -7,8 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-</head>
-<style>
+  <style>
     ::placeholder {
       color: #adb5bd !important;
       opacity: 1 !important;
@@ -76,6 +75,7 @@
       }
     }
   </style>
+</head>
 <body>
   <!-- Mobile Header -->
   <nav class="navbar navbar-light bg-light fixed-top d-md-none">
@@ -92,7 +92,7 @@
     <h4>Dashboard</h4>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="/index.html">
+        <a class="nav-link" href="../index.html">
           <i class="bi bi-house-door"></i> Home
         </a>
       </li>
@@ -102,9 +102,9 @@
         </a>
         <div class="collapse ps-3" id="collapseDataWarga">
           <ul class="nav flex-column">
-            <li><a class="nav-link" href="pages/data-warga.html">Data Warga</a></li>
-            <li><a class="nav-link" href="pages/data-kematian.html">Data Kematian</a></li>
-            <li><a class="nav-link" href="pages/data-kelahiran.html">Data Kelahiran</a></li>
+            <li><a class="nav-link" href="data-warga.html">Data Warga</a></li>
+            <li><a class="nav-link" href="data-kematian.html">Data Kematian</a></li>
+            <li><a class="nav-link" href="data-kelahiran.html">Data Kelahiran</a></li>
           </ul>
         </div>
       </li>
@@ -114,9 +114,9 @@
         </a>
         <div class="collapse ps-3" id="collapseFormWarga">
           <ul class="nav flex-column">
-            <li><a class="nav-link" href="pages/form-data-warga.html">Form Data Warga</a></li>
-            <li><a class="nav-link" href="pages/form-data-kematian.html">Form Data Kematian</a></li>
-            <li><a class="nav-link" href="pages/form-data-kelahiran.html">Form Data Kelahiran</a></li>
+            <li><a class="nav-link" href="form-data-warga.html">Form Data Warga</a></li>
+            <li><a class="nav-link" href="form-data-kematian.html">Form Data Kematian</a></li>
+            <li><a class="nav-link" href="form-data-kelahiran.html">Form Data Kelahiran</a></li>
           </ul>
         </div>
       </li>
@@ -128,37 +128,38 @@
     <h4>Dashboard</h4>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a>
+        <a class="nav-link" href="../index.html"><i class="bi bi-house-door"></i> Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
         <ul class="nav flex-column ps-3 collapse" id="collapseMobileData">
-          <li><a class="nav-link" href="pages/data-warga.html">Data Warga</a></li>
-          <li><a class="nav-link" href="pages/data-kematian.html">Data Kematian</a></li>
-          <li><a class="nav-link" href="pages/data-kelahiran.html">Data Kelahiran</a></li>
+          <li><a class="nav-link" href="data-warga.html">Data Warga</a></li>
+          <li><a class="nav-link" href="data-kematian.html">Data Kematian</a></li>
+          <li><a class="nav-link" href="data-kelahiran.html">Data Kelahiran</a></li>
         </ul>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileForm')"><i class="bi bi-journal-text"></i> Form Pendataan</a>
         <ul class="nav flex-column ps-3 collapse" id="collapseMobileForm">
-          <li><a class="nav-link" href="pages/form-data-warga.html">Form Data Warga</a></li>
-          <li><a class="nav-link" href="pages/form-data-kematian.html">Form Data Kematian</a></li>
-          <li><a class="nav-link" href="pages/form-data-kelahiran.html">Form Data Kelahiran</a></li>
+          <li><a class="nav-link" href="form-data-warga.html">Form Data Warga</a></li>
+          <li><a class="nav-link" href="form-data-kematian.html">Form Data Kematian</a></li>
+          <li><a class="nav-link" href="form-data-kelahiran.html">Form Data Kelahiran</a></li>
         </ul>
       </li>
     </ul>
   </div>
   <div class="backdrop" id="mobileBackdrop"></div>
 
-        <div class="main-content pt-5">
-            <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
-            <div class="container-fluid">
-                <form class="d-flex" role="search">
+  <!-- Main Content Wrapper -->
+    <div class="main-content pt-5">
+        <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-            </nav>
+            </form>
+        </div>
+    </nav>
     <main class="container py-5">
         <h2 class="mb-4">Form Dasawisma</h2>
     <form>
@@ -311,5 +312,6 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/main.js"></script>
 </body>
 </html>
