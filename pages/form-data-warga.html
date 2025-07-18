@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Dasawisma</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+</head>
+<style>
+    ::placeholder {
+      color: #adb5bd !important;
+      opacity: 1 !important;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    .main-content {
+      padding: 1rem;
+    }
+    @media (min-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 250px;
+        background-color: #fff;
+        border-right: 1px solid #e2e8f0;
+        padding: 1rem;
+        z-index: 1030;
+      }
+      .main-content {
+        margin-left: 250px;
+        margin-top: 0;
+        padding-top: 90px;
+      }
+    }
+    @media (max-width: 767.98px) {
+      .sidebar {
+        display: none;
+      }
+      .offcanvas-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        padding: 1rem;
+        border-right: 1px solid #dee2e6;
+        z-index: 1050;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .offcanvas-menu.show {
+        transform: translateX(0);
+      }
+      .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1040;
+        display: none;
+      }
+      .backdrop.show {
+        display: block;
+      }
+    }
+  </style>
+<body>
+  <!-- Mobile Header -->
+  <nav class="navbar navbar-light bg-light fixed-top d-md-none">
+    <div class="container-fluid">
+      <button class="btn btn-outline-secondary" id="mobileToggle">
+        <i class="bi bi-list"></i>
+      </button>
+      <span class="navbar-brand mb-0 h1">Dashboard</span>
+    </div>
+  </nav>
+
+  <!-- Sidebar for Desktop -->
+  <div class="sidebar d-none d-md-block">
+    <h4>Dashboard</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html">
+          <i class="bi bi-house-door"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseDataWarga" role="button" aria-expanded="false" aria-controls="collapseDataWarga">
+          <i class="bi bi-people"></i> Data Warga
+        </a>
+        <div class="collapse ps-3" id="collapseDataWarga">
+          <ul class="nav flex-column">
+            <li><a class="nav-link" href="pages/data-warga.html">Data Warga</a></li>
+            <li><a class="nav-link" href="pages/data-kematian.html">Data Kematian</a></li>
+            <li><a class="nav-link" href="pages/data-kelahiran.html">Data Kelahiran</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseFormWarga" role="button" aria-expanded="false" aria-controls="collapseFormWarga">
+          <i class="bi bi-journal-text"></i> Form Pendataan
+        </a>
+        <div class="collapse ps-3" id="collapseFormWarga">
+          <ul class="nav flex-column">
+            <li><a class="nav-link" href="pages/form-data-warga.html">Form Data Warga</a></li>
+            <li><a class="nav-link" href="pages/form-data-kematian.html">Form Data Kematian</a></li>
+            <li><a class="nav-link" href="pages/form-data-kelahiran.html">Form Data Kelahiran</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Sidebar for Mobile -->
+  <div class="offcanvas-menu" id="mobileSidebar">
+    <h4>Dashboard</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
+        <ul class="nav flex-column ps-3 collapse" id="collapseMobileData">
+          <li><a class="nav-link" href="pages/data-warga.html">Data Warga</a></li>
+          <li><a class="nav-link" href="pages/data-kematian.html">Data Kematian</a></li>
+          <li><a class="nav-link" href="pages/data-kelahiran.html">Data Kelahiran</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileForm')"><i class="bi bi-journal-text"></i> Form Pendataan</a>
+        <ul class="nav flex-column ps-3 collapse" id="collapseMobileForm">
+          <li><a class="nav-link" href="pages/form-data-warga.html">Form Data Warga</a></li>
+          <li><a class="nav-link" href="pages/form-data-kematian.html">Form Data Kematian</a></li>
+          <li><a class="nav-link" href="pages/form-data-kelahiran.html">Form Data Kelahiran</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="backdrop" id="mobileBackdrop"></div>
+
+        <div class="main-content pt-5">
+            <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            </nav>
+    <main class="container py-5">
+        <h2 class="mb-4">Form Dasawisma</h2>
+    <form>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="namaKK" class="form-label">Nama Kepala Keluarga</label>
+          <input type="text" class="form-control" id="namaKK" placeholder="Dalmi">
+        </div>
+        <div class="col-md-6">
+          <label for="nik" class="form-label">NIK</label>
+          <input type="text" class="form-control" id="nik" placeholder="0001">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="jumlahKK" class="form-label">Jumlah Kepala Keluarga</label>
+          <input type="text" class="form-control" id="jumlahKK" placeholder="2 Kepala Keluarga">
+        </div>
+        <div class="col-md-3">
+          <label for="jumlahLL" class="form-label">Jumlah Anggota Laki Laki</label>
+          <input type="text" class="form-control" id="jumlahLL" placeholder="5">
+        </div>
+        <div class="col-md-3">
+          <label for="jumlahP" class="form-label">Jumlah Anggota Perempuan</label>
+          <input type="text" class="form-control" id="jumlahP" placeholder="2">
+        </div>
+      </div>
+
+      <h5 class="mt-4">Kondisi Keluarga</h5>
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label class="form-label">Balita Laki-laki</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Balita Perempuan</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Pasangan Usia Subur</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Wanita Usia Subur</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label class="form-label">Ibu Hamil</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Ibu Menyusui</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Lansia</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">3 Buta (Informasi, Warna, Huruf)</label>
+          <input type="text" class="form-control" placeholder="1">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Berkebutuhan Khusus</label>
+        <input type="text" class="form-control" placeholder="1">
+      </div>
+
+      <h5 class="mt-4">Kriteria Rumah</h5>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="rumahLayak">
+        <label class="form-check-label" for="rumahLayak">Sehat Layak Huni</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="usahaLingkungan">
+        <label class="form-check-label" for="usahaLingkungan">Aktivitas Usaha Kesehatan Lingkungan</label>
+      </div>
+       <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="tempatSampah">
+        <label class="form-check-label" for="tempatSampah">Memiliki Tempat Pembuangan Sampah</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="memilikiSPAL">
+        <label class="form-check-label" for="memilikiSPAL">Memiliki SPAL</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="jambanKeluarga">
+        <label class="form-check-label" for="jambanKeluarga">Memiliki Jamban Keluarga</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="stikerP4K">
+        <label class="form-check-label" for="stikerP4K">Menempel Stiker P4K</label>
+      </div>
+
+
+      <h5 class="mt-4">Sumber Air</h5>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="pdam">
+        <label class="form-check-label" for="pdam">PDAM</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="sumur">
+        <label class="form-check-label" for="sumur">Sumur</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="dll">
+        <label class="form-check-label" for="dll">Dan lain-lain</label>
+      </div>
+
+      <h5 class="mt-4">Makanan Pokok</h5>
+      <div class="col-md-3">
+          <label class="form-label">Beras</label>
+          <input type="text" class="form-control" placeholder="1 Orang">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Non Beras</label>
+          <input type="text" class="form-control" placeholder="1 Orang">
+        </div>
+
+      <h5 class="mt-4">Kegiatan</h5>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="up2k">
+        <label class="form-check-label" for="up2k">UP2K</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="kerjaBakti">
+        <label class="form-check-label" for="kerjaBakti">Kerja Bakti</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="kerjaBakti">
+        <label class="form-check-label" for="kerjaBakti">Industri Rumah Tangga</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="kerjaBakti">
+        <label class="form-check-label" for="kerjaBakti">Kerja Bakti</label>
+      </div>
+
+      <div class="mb-3">
+        <label for="keterangan" class="form-label">Keterangan Tambahan</label>
+        <textarea class="form-control" id="keterangan" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
