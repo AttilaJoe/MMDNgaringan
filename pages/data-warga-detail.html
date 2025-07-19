@@ -85,6 +85,11 @@
         <i class="bi bi-list"></i>
       </button>
       <span class="navbar-brand mb-0 h1">Dashboard</span>
+      <!-- Notifikasi dengan Link pada Header Mobile -->
+      <a href="/pages/notifikasi.html" class="btn btn-outline-danger position-relative" id="notificationBtnMobile">
+        <i class="bi bi-bell"></i>
+        <span id="notificationBadgeMobile" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="display: none;">1</span> <!-- Badge -->
+      </a>
     </div>
   </nav>
 
@@ -121,11 +126,6 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/pages/notifikasi.html">
-          <i class="bi bi-bell"></i> Notifikasi
-        </a>
-      </li>
     </ul>
   </div>
 
@@ -153,11 +153,6 @@
             <li><a class="nav-link" href="#">Form Data Kelahiran</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/notifikasi.html">
-            <i class="bi bi-bell"></i> Notifikasi
-          </a>
-        </li>
       </ul>
     </div>
   </div>
@@ -167,14 +162,19 @@
     <!-- Main Content -->
     <div class="main-content pt-5">
       <!-- Desktop Header -->
-      <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0; z-index: 1030;">
-        <div class="container-fluid">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+      <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+      <div class="container-fluid">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <!-- Notifikasi dengan Link pada Header Desktop -->
+        <a href="/pages/notifikasi.html" class="btn btn-outline-danger position-relative" id="notificationBtnDesktop">
+          <i class="bi bi-bell"></i>
+          <span id="notificationBadgeDesktop" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="display: none;">1</span> <!-- Badge -->
+        </a>
+      </div>
+    </nav>
 
       <!-- Page Content -->
       <main class="container py-4 px-3 px-md-4">
