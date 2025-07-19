@@ -131,33 +131,35 @@
 
   <!-- Sidebar for Mobile -->
   <div class="offcanvas-menu" id="mobileSidebar">
-    <h4>Dashboard</h4>
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="../index.html"><i class="bi bi-house-door"></i> Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
-        <ul class="nav flex-column ps-3 collapse" id="collapseMobileData">
-          <li><a class="nav-link" href="data-warga.html">Data Warga</a></li>
-          <li><a class="nav-link" href="data-kematian.html">Data Kematian</a></li>
-          <li><a class="nav-link" href="data-kelahiran.html">Data Kelahiran</a></li>
-        </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileForm')"><i class="bi bi-journal-text"></i> Form Pendataan</a>
-        <ul class="nav flex-column ps-3 collapse" id="collapseMobileForm">
-          <li><a class="nav-link" href="form-data-warga.html">Form Data Warga</a></li>
-          <li><a class="nav-link" href="form-data-kematian.html">Form Data Kematian</a></li>
-          <li><a class="nav-link" href="form-data-kelahiran.html">Form Data Kelahiran</a></li>
-        </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/pages/notifikasi.html">
-          <i class="bi bi-bell"></i> Notifikasi
-        </a>
-      </li>
-    </ul>
+  <h4>Dashboard</h4>
+    <div class="d-flex justify-content-between mt-auto p-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html"><i class="bi bi-house-door"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
+          <ul class="nav flex-column ps-3 collapse" id="collapseMobileData">
+            <li><a class="nav-link" href="/pages/data-warga.html">Data Warga</a></li>
+            <li><a class="nav-link" href="#">Data Kematian</a></li>
+            <li><a class="nav-link" href="#">Data Kelahiran</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileForm')"><i class="bi bi-journal-text"></i> Form Pendataan</a>
+          <ul class="nav flex-column ps-3 collapse" id="collapseMobileForm">
+            <li><a class="nav-link" href="/pages/form-data-warga.html">Form Data Warga</a></li>
+            <li><a class="nav-link" href="#">Form Data Kematian</a></li>
+            <li><a class="nav-link" href="#">Form Data Kelahiran</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/notifikasi.html">
+            <i class="bi bi-bell"></i> Notifikasi
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="backdrop" id="mobileBackdrop"></div>
 
