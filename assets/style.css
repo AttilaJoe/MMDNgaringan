@@ -118,7 +118,6 @@ html, body {
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Ensures items are aligned at the top initially */
 }
 
 .offcanvas-menu.show {
@@ -140,17 +139,6 @@ html, body {
   display: block;
 }
 
-/* CSS Flexbox untuk nav items */
-.nav {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Membuat nav mengisi ruang yang tersisa */
-  margin-top: auto; /* Memastikan nav items berada di bawah */
-}
-
-.nav-item {
-  margin-bottom: 10px; /* Memberikan jarak antar item */
-}
 
 /* Responsive Sidebar untuk mobile */
 @media (max-width: 767.98px) {

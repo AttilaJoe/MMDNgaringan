@@ -10,7 +10,7 @@
   <script src="js/main.js"></script>
   <style>
     ::placeholder {
-      color: #adb5bd !important;
+      color: #000 !important;
       opacity: 1 !important;
     }
 
@@ -132,7 +132,6 @@
   <!-- Sidebar for Mobile -->
   <div class="offcanvas-menu" id="mobileSidebar">
   <h4>Dashboard</h4>
-    <div class="d-flex justify-content-between mt-auto p-3">
       <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link" href="../index.html"><i class="bi bi-house-door"></i> Home</a>
@@ -154,7 +153,6 @@
           </ul>
         </li>
       </ul>
-    </div>
   </div>
   <div class="backdrop" id="mobileBackdrop"></div>
 
@@ -196,9 +194,35 @@
             <div class="container py-4">
                 <div class="row g-4">
                     <div class="col-md-6">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header fw-semibold">Kondisi Rumah Tangga</div>
+                      <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Kepala Keluarga</div>
                         <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kepala Keluarga</label>
+                            <input type="text" class="form-control" disabled placeholder="Tidak Ada" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">NIK</label>
+                            <input type="text" class="form-control" disabled placeholder="Tidak Ada" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Kepala Keluarga</label>
+                            <input type="text" class="form-control" disabled placeholder="1 Pasangan" />
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Jumlah Anggota Keluarga</div>
+                        <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Anggota Laki-Laki</label>
+                            <input type="text" class="form-control" disabled placeholder="Tidak Ada" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Anggota Perempuan</label>
+                            <input type="text" class="form-control" disabled placeholder="1 Ibu Hamil" />
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Jumlah Balita Laki-laki</label>
                             <input type="text" class="form-control" disabled placeholder="Tidak Ada" />
@@ -237,7 +261,9 @@
                         </div>
                         </div>
                     </div>
+                    </div>
 
+                    <div class="col-md-6">
                     <div class="card shadow-sm">
                         <div class="card-header fw-semibold">Makanan Pokok</div>
                         <div class="card-body">
@@ -251,10 +277,6 @@
                         </div>
                         </div>
                     </div>
-
-                    </div>
-
-                    <div class="col-md-6">
                     <div class="card shadow-sm mb-4">
                         <div class="card-header fw-semibold">Kriteria Rumah</div>
                         <div class="card-body">
