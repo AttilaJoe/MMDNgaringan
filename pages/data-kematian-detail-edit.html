@@ -180,30 +180,34 @@
 
         <div class="card mb-4">
           <div class="card-body">
-            <p class="mb-0">Informasi detail tentang kelahiran ditampilkan di bawah ini.</p>
+            <p class="mb-0">Informasi detail tentang kematian ditampilkan di bawah ini.</p>
           </div>
         </div>
             <div class="container py-4">
                 <div class="row g-4">
                     <div class="col-md-6">
                       <div class="card shadow-sm mb-4">
-                        <div class="card-header fw-semibold">Ibu</div>
+                        <div class="card-header fw-semibold">Data yang Meninggal</div>
                         <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Nama Ibu</label>
-                            <input type="text" class="form-control"  placeholder="Tidak Ada" />
+                            <label for="NIKMeninggal" class="form-label">NIK</label>
+                            <input type="text" class="form-control" id="NIKMeninggal" placeholder="0001" >
+                        </div>
+                         <div class="mb-3">
+                            <label for="orangMeninggal" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="orangMeninggal" placeholder="Nama orang" >
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Nama Suami</label>
-                            <input type="text" class="form-control"  placeholder="Tidak Ada" />
+                            <label for="tempatMeninggal" class="form-label">Tempat Meninggal</label>
+                            <input type="text" class="form-control" id="tempatMeninggal" placeholder="Rumah" >
                         </div>
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                              <select class="form-select" id="status" name="status" placeholder="Hamil" >
-                                <option value="hamil">Hamil</option>
-                                <option value="nifas">Nifas</option>
-                                <option value="nifas">Melahirkan</option>
-                              </select>
+                           <label for="tanggalMeninggal" class="form-label">Tanggal Meninggal</label>
+                          <input type="date" class="form-control" id="tanggalMeninggal" name="date" >
+                        </div>
+                        <div class="mb-3">
+                           <label for="tanggalPemakaman" class="form-label">Tanggal Pemakaman</label>
+                          <input type="date" class="form-control" id="tanggalPemakaman" name="date" >
                         </div>
                         </div>
                     </div>
@@ -212,32 +216,33 @@
 
                     <div class="col-md-6">
                     <div class="card shadow-sm mb-4">
-                        <div class="card-header fw-semibold">Data Bayi</div>
+                        <div class="card-header fw-semibold">Data Pelapor</div>
                         <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Nama Bayi</label>
-                            <input type="text" class="form-control"  placeholder="Tidak Ada" />
+                            <label class="form-label">NIK Pelapor</label>
+                            <input type="text" class="form-control"  placeholder="0002" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" id="status" name="kelaminBayi" placeholder="Tidak ada" >
-                              <option value="belum">Belum</option>
-                              <option value="perempuan">Perempuan</option>
-                              <option value="laki">Laki-Laki</option>
-                            </select>
+                            <label class="form-label">Nama Pelapor</label>
+                            <input type="text" class="form-control"  placeholder="Austin" />
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Yang bisa dihubungi</div>
+                        <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nomor Telepon</label>
+                            <input type="text" class="form-control"  placeholder="01234567890" />
                         </div>
                         <div class="mb-3">
-                            <label for="tanggalLahir" class="form-label">Tanggal Kelahiran</label>
-                            <input type="date" class="form-control" id="tanggalLahir" name="date" >
-                        </div>
-                        <div class="form-check mb-2">
-                          <input type="checkbox" class="form-check-input" id="aktaKelahiran" checked >
-                          <label class="form-check-label" for="aktaKelahiran">Akta Kelahiran</label>
+                            <label class="form-label">Nama yang bisa dihubungi</label>
+                            <input type="text" class="form-control"  placeholder="Austin" />
                         </div>
                         </div>
                     </div>
                     </div>
-
+                </div>
                     <div class="card shadow-sm">
                         <div class="card-header fw-semibold">Keterangan Tambahan</div>
                         <div class="card-body">
@@ -247,15 +252,15 @@
                         </div>
                         </div>
                     </div>
-                  </div>                  
+                    </div>                    
                 </div>
-              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1 class="h4 mb-0"></h1>
                 <button class="btn btn-outline-secondary">
                     <i class=""></i> Simpan
                 </button>
               </div>
-          </div>
+            </div>
         </div>
       </main>
     </div>
