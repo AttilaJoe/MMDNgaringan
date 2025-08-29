@@ -1,0 +1,387 @@
+<?php
+include "koneksi.php";
+
+if (isset($_GET['nik'])) {
+    $nik = $_GET['nik'];
+    $result = mysqli_query($conn, "
+        SELECT kk.NIK, kk.nama_kepala_rumah, kk.jumlah_kepala_keluarga,
+               jaw.jumlah_anggota_laki, jaw.jumlah_anggota_perempuan, jaw.balita_laki, jaw.balita_perempuan, 
+               jaw.pasangan_usia_subur, jaw.wanita_usia_subur, jaw.ibu_hamil, jaw.ibu_menyusui, jaw.lansia, jaw.tiga_buta, jaw.berkebutuhan_khusus
+        FROM kepala_keluarga kk
+        LEFT JOIN jumlah_anggota_keluarga jaw ON kk.NIK = jaw.NIK
+        WHERE kk.NIK = '$nik'
+        ");    
+        $data = mysqli_fetch_assoc($result);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Data Kepala Keluarga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <script src="js/main.js"></script>
+  <style>
+    ::placeholder {
+      color: #000 !important;
+      opacity: 1 !important;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    .main-content {
+      padding: 1rem;
+    }
+    @media (min-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 250px;
+        background-color: #fff;
+        border-right: 1px solid #e2e8f0;
+        padding: 1rem;
+        z-index: 1030;
+      }
+      .main-content {
+        margin-left: 250px;
+        margin-top: 0;
+        padding-top: 90px;
+      }
+    }
+    @media (max-width: 767.98px) {
+      .sidebar {
+        display: none;
+      }
+      .offcanvas-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        padding: 1rem;
+        border-right: 1px solid #dee2e6;
+        z-index: 1050;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .offcanvas-menu.show {
+        transform: translateX(0);
+      }
+      .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1040;
+        display: none;
+      }
+      .backdrop.show {
+        display: block;
+      }
+    }
+  </style>
+  </head>
+  <body>
+    <!-- Mobile Header -->
+  <nav class="navbar navbar-light bg-light fixed-top d-md-none">
+    <div class="container-fluid">
+      <button class="btn btn-outline-secondary" id="mobileToggle">
+        <i class="bi bi-list"></i>
+      </button>
+      <span class="navbar-brand mb-0 h1">Dashboard</span>
+      <!-- Notifikasi dengan Link pada Header Mobile -->
+      <a href="/pages/notifikasi.html" class="btn btn-outline-danger position-relative" id="notificationBtnMobile">
+        <i class="bi bi-bell"></i>
+        <span id="notificationBadgeMobile" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="display: none;">1</span> <!-- Badge -->
+      </a>
+    </div>
+  </nav>
+
+  <!-- Sidebar for Desktop -->
+  <div class="sidebar d-none d-md-block">
+    <h4>Dashboard</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="../pages/index.html">
+          <i class="bi bi-house-door"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseDataWarga" role="button" aria-expanded="false" aria-controls="collapseDataWarga">
+          <i class="bi bi-people"></i> Data Warga
+        </a>
+        <div class="collapse ps-3" id="collapseDataWarga">
+          <ul class="nav flex-column">
+            <li><a class="nav-link" href="data-warga.html">Data Warga</a></li>
+            <li><a class="nav-link" href="data-kematian.html">Data Kematian</a></li>
+            <li><a class="nav-link" href="data-kelahiran.html">Data Kelahiran</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseFormWarga" role="button" aria-expanded="false" aria-controls="collapseFormWarga">
+          <i class="bi bi-journal-text"></i> Form Pendataan
+        </a>
+        <div class="collapse ps-3" id="collapseFormWarga">
+          <ul class="nav flex-column">
+            <li><a class="nav-link" href="form-data-warga.html">Form Data Warga</a></li>
+            <li><a class="nav-link" href="form-data-kematian.html">Form Data Kematian</a></li>
+            <li><a class="nav-link" href="form-data-kelahiran.html">Form Data Kelahiran</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Sidebar for Mobile -->
+  <div class="offcanvas-menu" id="mobileSidebar">
+  <h4>Dashboard</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/index.html"><i class="bi bi-house-door"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
+          <ul class="nav flex-column ps-3 collapse" id="collapseMobileData">
+            <li><a class="nav-link" href="/pages/data-warga.html">Data Warga</a></li>
+            <li><a class="nav-link" href="#">Data Kematian</a></li>
+            <li><a class="nav-link" href="#">Data Kelahiran</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileForm')"><i class="bi bi-journal-text"></i> Form Pendataan</a>
+          <ul class="nav flex-column ps-3 collapse" id="collapseMobileForm">
+            <li><a class="nav-link" href="/pages/form-data-warga.html">Form Data Warga</a></li>
+            <li><a class="nav-link" href="#">Form Data Kematian</a></li>
+            <li><a class="nav-link" href="#">Form Data Kelahiran</a></li>
+          </ul>
+        </li>
+      </ul>
+  </div>
+  <div class="backdrop" id="mobileBackdrop"></div>
+
+
+    <!-- Main Content -->
+    <div class="main-content pt-5">
+      <!-- Desktop Header -->
+      <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+      <div class="container-fluid">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <!-- Notifikasi dengan Link pada Header Desktop -->
+        <a href="/pages/notifikasi.html" class="btn btn-outline-danger position-relative" id="notificationBtnDesktop">
+          <i class="bi bi-bell"></i>
+          <span id="notificationBadgeDesktop" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="display: none;">1</span> <!-- Badge -->
+        </a>
+      </div>
+    </nav>
+
+      <!-- Page Content -->
+      <main class="container py-4 px-3 px-md-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-outline-secondary" onclick="history.back()">
+            <i class="bi bi-arrow-left"></i> Kembali
+        </button>
+        <h1 class="h4 mb-0">Detail Data Kepala Keluarga</h1>
+        <button class="btn btn-outline-secondary">
+            <i class=""></i> Edit
+        </button>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="mb-0">Informasi detail tentang kepala keluarga ditampilkan di bawah ini.</p>
+          </div>
+        </div>
+            <div class="container py-4">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Kepala Keluarga</div>
+                        <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kepala Keluarga</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['nama_kepala_rumah'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">NIK</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['NIK'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Kepala Keluarga</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['jumlah_kepala_keluarga'] ?? '-' ?>" />
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Jumlah Anggota Keluarga</div>
+                        <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Anggota Laki-Laki</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['jumlah_anggota_laki'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Anggota Perempuan</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['jumlah_anggota_perempuan'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Balita Laki-laki</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['jumlah_balita_laki'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Balita Perempuan</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['jumlah_balita_perempuan'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pasangan Usia Subur</label>
+                            <input type="text" class="form-control" disabled value="<?= $data['pasangan_usia_subur'] ?? '-' ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Wanita Usia Subur</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ibu Hamil</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ibu Menyusui</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Lansia</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">3 Buta (Informasi, Warna, Huruf)</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Berkebutuhan Khusus</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-6">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Makanan Pokok</div>
+                        <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Beras</label>
+                            <input type="text" class="form-control" disabled placeholder="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Non Beras</label>
+                            <input type="text" class="form-control" disabled placeholder="0" />
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Kriteria Rumah</div>
+                        <div class="card-body">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Sehat Layak Huni</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Aktivitas Kegiatan Usaha Kesehatan Lingkungan</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Memiliki Tempat Pembuangan Sampah</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Memiliki SPAL</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Memiliki Jamban Keluarga</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Menempel Stiker P4K</label>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Sumber Air Keluarga</div>
+                        <div class="card-body">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" disabled />
+                            <label class="form-check-label">PDAM</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Sumur</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" disabled />
+                            <label class="form-check-label">Dan Lain-lain</label>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header fw-semibold">Mengikuti Kegiatan</div>
+                        <div class="card-body">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">UP2K</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Pemanfaatan Tanah Perkarangan</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Industri Rumah Tangga</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Kerja Bakti</label>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-header fw-semibold">Keterangan Tambahan</div>
+                        <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Keterangan</label>
+                            <textarea class="form-control" rows="5" disabled placeholder="Deskripsi untuk Keterangan Tambahan"></textarea>
+                        </div>
+                        </div>
+                    </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/main.js"></script>
+  </body>
+</html>

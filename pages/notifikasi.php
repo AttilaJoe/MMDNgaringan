@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detail Data Kepala Keluarga</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifikasi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <style>
-
+</head>
+<!-- <style>
     html, body {
       margin: 0;
       padding: 0;
@@ -71,10 +72,9 @@
         display: block;
       }
     }
-  </style>
-  </head>
-  <body>
-    <!-- Mobile Header -->
+  </style> -->
+<body>
+  <!-- Mobile Header -->
   <nav class="navbar navbar-light bg-light fixed-top d-md-none">
     <div class="container-fluid">
       <button class="btn btn-outline-secondary" id="mobileToggle">
@@ -148,15 +148,18 @@
             <li><a class="nav-link" href="#">Form Data Kelahiran</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/notifikasi.html">
+            <i class="bi bi-bell"></i> Notifikasi
+          </a>
+        </li>
       </ul>
   </div>
   <div class="backdrop" id="mobileBackdrop"></div>
 
-
-    <!-- Main Content -->
+  <!-- Main Content Wrapper -->
     <div class="main-content pt-5">
-      <!-- Desktop Header -->
-      <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+    <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
       <div class="container-fluid">
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -170,98 +173,42 @@
       </div>
     </nav>
 
-      <!-- Page Content -->
-      <main class="container py-4 px-3 px-md-4">
+    <main class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
-        <button class="btn btn-outline-secondary" onclick="window.location.href='data-kelahiran-detail.html'">
-          <i class="bi bi-arrow-left"></i> Kembali
-        </button>
+             <h3 class="text-center mb-4">Notifikasi Perubahan Data</h3>
         </div>
 
-        <div class="card mb-4">
-          <div class="card-body">
-            <p class="mb-0">Informasi detail tentang kelahiran ditampilkan di bawah ini.</p>
-          </div>
-        </div>
-            <div class="container py-4">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                      <div class="card shadow-sm mb-4">
-                        <div class="card-header fw-semibold">Ibu</div>
-                        <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Nama Ibu</label>
-                            <input type="text" class="form-control"  placeholder="Tidak Ada" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Nama Suami</label>
-                            <input type="text" class="form-control"  placeholder="Tidak Ada" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                              <select class="form-select" id="status" name="status" placeholder="Hamil" >
-                                <option value="hamil">Hamil</option>
-                                <option value="nifas">Nifas</option>
-                                <option value="nifas">Melahirkan</option>
-                              </select>
-                        </div>
-                        </div>
-                    </div>
-
-                    </div>
-
-                    <div class="col-md-6">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header fw-semibold">Data Bayi</div>
-                        <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Nama Bayi</label>
-                            <input type="text" class="form-control"  placeholder="Tidak Ada" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" id="status" name="kelaminBayi" placeholder="Tidak ada" >
-                              <option value="belum">Belum</option>
-                              <option value="perempuan">Perempuan</option>
-                              <option value="laki">Laki-Laki</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="tanggalLahir" class="form-label">Tanggal Kelahiran</label>
-                            <input type="date" class="form-control" id="tanggalLahir" name="date" >
-                        </div>
-                        <div class="form-check mb-2">
-                          <input type="checkbox" class="form-check-input" id="aktaKelahiran" checked >
-                          <label class="form-check-label" for="aktaKelahiran">Akta Kelahiran</label>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="card shadow-sm">
-                        <div class="card-header fw-semibold">Keterangan Tambahan</div>
-                        <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Keterangan</label>
-                            <textarea class="form-control" rows="5"  placeholder="Deskripsi untuk Keterangan Tambahan"></textarea>
-                        </div>
-                        </div>
-                    </div>
-                    </div>                  
-                </div>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-
-        <h1 class="h4 mb-0"></h1>
-        <button class="btn btn-outline-secondary">
-            <i class=""></i> Simpan
-        </button>
-        </div>
-            </div>
-        </div>
-      </main>
+    
+   
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Tanggal Perubahan</th>
+            <th scope="col">Deskripsi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Dalmi</td>
+            <td>2023-05-25</td>
+            <td>Data kepala keluarga diperbarui.</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Painem</td>
+            <td>2023-05-24</td>
+            <td>Perubahan anggota keluarga ditambahkan.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/main.js"></script>
-  </body>
+</body>
 </html>

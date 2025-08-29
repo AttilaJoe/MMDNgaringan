@@ -1,9 +1,12 @@
+<?php
+include "koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Form Kematian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Warga</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
@@ -13,73 +16,38 @@
       color: #adb5bd !important;
       opacity: 1 !important;
     }
-
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow-x: hidden;
+      margin: 0; padding: 0; height: 100%; overflow-x: hidden;
     }
-    .main-content {
-      padding: 1rem;
-    }
+    .main-content { padding: 1rem; }
     @media (min-width: 768px) {
       .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 250px;
-        background-color: #fff;
-        border-right: 1px solid #e2e8f0;
-        padding: 1rem;
-        z-index: 1030;
+        position: fixed; top: 0; bottom: 0; left: 0;
+        width: 250px; background-color: #fff;
+        border-right: 1px solid #e2e8f0; padding: 1rem; z-index: 1030;
       }
-      .main-content {
-        margin-left: 250px;
-        margin-top: 0;
-        padding-top: 90px;
-      }
+      .main-content { margin-left: 250px; padding-top: 90px; }
     }
     @media (max-width: 767.98px) {
-      .sidebar {
-        display: none;
-      }
+      .sidebar { display: none; }
       .offcanvas-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 250px;
-        height: 100vh;
-        background-color: #fff;
-        padding: 1rem;
-        border-right: 1px solid #dee2e6;
-        z-index: 1050;
-        transform: translateX(-100%);
+        position: fixed; top: 0; left: 0; width: 250px; height: 100vh;
+        background-color: #fff; padding: 1rem; border-right: 1px solid #dee2e6;
+        z-index: 1050; transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
       }
-      .offcanvas-menu.show {
-        transform: translateX(0);
-      }
+      .offcanvas-menu.show { transform: translateX(0); }
       .backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0,0,0,0.5);
-        z-index: 1040;
-        display: none;
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background-color: rgba(0,0,0,0.5); z-index: 1040; display: none;
       }
-      .backdrop.show {
-        display: block;
-      }
+      .backdrop.show { display: block; }
     }
   </style>
 </head>
 <body>
-  <!-- Mobile Header -->
-  <nav class="navbar navbar-light bg-light fixed-top d-md-none">
+  <!-- Sidebar dan Header -->
+<nav class="navbar navbar-light bg-light fixed-top d-md-none">
     <div class="container-fluid">
       <button class="btn btn-outline-secondary" id="mobileToggle">
         <i class="bi bi-list"></i>
@@ -98,7 +66,7 @@
     <h4>Dashboard</h4>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="/coding/MMDKADER2/pages/index.php">
+        <a class="nav-link" href="../pages/index.html">
           <i class="bi bi-house-door"></i> Home
         </a>
       </li>
@@ -134,7 +102,7 @@
   <h4>Dashboard</h4>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="/coding/MMDKADER2/pages/index.php"><i class="bi bi-house-door"></i> Home</a>
+          <a class="nav-link" href="../pages/index.html"><i class="bi bi-house-door"></i> Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="toggleCollapse('collapseMobileData')"><i class="bi bi-people"></i> Data Warga</a>
@@ -155,90 +123,88 @@
       </ul>
   </div>
   <div class="backdrop" id="mobileBackdrop"></div>
-
-
-  <!-- Main Content Wrapper -->
-    <div class="main-content pt-5">
-      <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
+  <!-- Main Content -->
+  <div class="main-content pt-5">
+    <nav class="navbar navbar-light bg-light fixed-top d-none d-md-block" style="left: 250px; right: 0; top: 0;">
       <div class="container-fluid">
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <!-- Notifikasi dengan Link pada Header Desktop -->
-        <a href="/pages/notifikasi.html" class="btn btn-outline-danger position-relative" id="notificationBtnDesktop">
+        <a href="/pages/notifikasi.html" class="btn btn-outline-danger position-relative">
           <i class="bi bi-bell"></i>
-          <span id="notificationBadgeDesktop" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="display: none;">1</span> <!-- Badge -->
+          <span id="notificationBadgeDesktop" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="display: none;">1</span>
         </a>
       </div>
     </nav>
-    
-    <main class="container py-5">
-        <h2 class="mb-4">Form Data Kematian</h2>
-    <form>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="namaIbu" class="form-label">NIK</label>
-          <input type="text" class="form-control" id="namaIbu">
-        </div>
-        <div class="col-md-6">
-          <label for="nikIbu" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="nikIbu">
-        </div>
-      </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="namaAyah" class="form-label">Tempat Meninggal</label>
-          <input type="text" class="form-control" id="namaAyah">
+    <main class="container-fluid py-4 px-3 px-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Daftar Kepala Keluarga</h5>
         </div>
-        <div class="col-md-6">
-          <label for="tanggalMeninggal" class="form-label">Tanggal Meninggal</label>
-          <input type="date" class="form-control" id="tanggalMeninggal" name="date" required>
+        <div class="card-body table-responsive">
+          <table class="table table-striped">
+            <thead class="table-light">
+              <tr>
+                <th>NIK</th>
+                <th>Nama Kepala Keluarga</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+  <?php
+  $ambildata = mysqli_query($conn, "SELECT * FROM kepala_keluarga");
+  while ($tampil = mysqli_fetch_array($ambildata)) {
+    echo "<tr>
+      <td>{$tampil['NIK']}</td>
+      <td>{$tampil['nama_kepala_rumah']}</td>
+      <td>
+        <a href='data-warga-detail.php?nik={$tampil['NIK']}' class='btn btn-outline-secondary'>
+          <i class='bi bi-arrow-right-circle'></i>
+        </a>
+      </td>
+    </tr>";
+  }
+  ?>
+</tbody>
+          </table>
         </div>
       </div>
+    </main>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="tanggalMeninggal" class="form-label">Tanggal Pemakaman</label>
-          <input type="date" class="form-control" id="tanggalPemakaman" name="date" required>
+    <!-- Modal Detail -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Detail Kepala Keluarga</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>NIK:</strong> <span id="modalNIK"></span></p>
+            <p><strong>Nama:</strong> <span id="modalNama"></span></p>
+            <p><strong>Jumlah Kepala Keluarga:</strong> <span id="modalJumlah"></span></p>
+          </div>
         </div>
       </div>
-      
-      <h5 class="mt-4">Pelapor</h5>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label class="form-label">NIK Pelapor</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Nama Pelapor</label>
-          <input type="text" class="form-control">
-        </div>
-      </div>
-      
-      <h5 class="mt-4">Yang bisa dihubungi</h5>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label class="form-label">Nomor Telepon</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Nama yang bisa dihubungi</label>
-          <input type="text" class="form-control">
-        </div>
-      </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="keterangan" class="form-label">Keterangan Tambahan</label>
-        <textarea class="form-control" id="keterangan" rows="3"></textarea>
-      </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.detail-btn');
+        buttons.forEach(btn => {
+          btn.addEventListener('click', function () {
+            document.getElementById('modalNIK').textContent = this.dataset.nik;
+            document.getElementById('modalNama').textContent = this.dataset.nama;
+            document.getElementById('modalJumlah').textContent = this.dataset.jumlah;
+          });
+        });
+      });
+    </script>
 
-      <button type="submit" class="btn btn-primary">Simpan</button>
-    </form>
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/main.js"></script>
+  </div>
 </body>
 </html>
